@@ -6,14 +6,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'mock-server';
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit() {
-    this.http.get('http://localhost:3000/api/users').subscribe((data) => {
-      console.log(data);
-    })
-  }
+  
 }

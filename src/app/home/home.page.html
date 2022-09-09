@@ -1,10 +1,18 @@
 <ion-header [translucent]="true">
+  
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      Blank
+      Home Page
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -13,8 +21,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+
+  <ion-grid>
+    <ion-row>
+        <ion-col size="12">
+            <ion-button (click)="beersPage()" expand="block" fill="clear" shape="round">
+                Navigate Beers Page
+            </ion-button>
+            <ion-button (click)="studentsPage()" expand="block" fill="clear" shape="round">
+                Navigate Students Page
+            </ion-button>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+
 </ion-content>
+
+

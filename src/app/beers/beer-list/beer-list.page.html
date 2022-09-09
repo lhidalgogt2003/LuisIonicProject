@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="backHome()">
+        <ion-icon slot="icon-only" name="arrow-back-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title> {{ 'beer list' | uppercase }} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="addbeers()">
+        <ion-icon slot="icon-only" name="add-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of beersList">
+      
+      <ion-item-options side="start">
+        <ion-item-option color="warning" (click)='editBeer()'>
+          <ion-icon name="create"></ion-icon>
+          Edit
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-label>{{ item.attributes.brand }}</ion-label>
+        <ion-label>{{ item.attributes.description }}</ion-label>
+        <ion-label>{{ item.attributes.price }}</ion-label>
+      </ion-item>
+      
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteBeer(item)" color="danger">
+          <ion-icon name="close"></ion-icon>
+          Delete
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
+</ion-content>
