@@ -1,38 +1,25 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-export class Student {
-  id: number;
-  name: string;
-  age: string;
-  address: string;
-}
+import { environment } from 'src/environments/environment';
+import { Student, Beer } from '../models/app-models';
+import { httpOptions } from './http-headers';
 
-export class Beer {
-  id: number;
-  brand: string;
-  description: string;
-  price: number;
-}
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  // Http Options
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-  // API path
-  base_path = 'http://localhost:1337/api/students';
-  beer_path = 'http://localhost:1337/api/beers';
-  constructor(private http: HttpClient) { }
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
   // Get students data
-  getList(): Observable<Student> {
+  getStudentList(): Observable<Student> {
     return this.http
-      .get<Student>(this.base_path)
+      .get<Student>(environment.apiUrl + environment.students)
       .pipe(
         retry(2),
       );
@@ -40,7 +27,7 @@ export class ApiService {
   // Delete student
   deleteStudent(id) {
     return this.http
-      .delete<Student>(this.base_path + '/' + id, this.httpOptions)
+      .delete<Student>(environment.apiUrl + environment.students + id, httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -48,17 +35,18 @@ export class ApiService {
   }
 
   // Get beers data
-  getBeers(): Observable<Beer> {
+  getBeersList(): Observable<Beer> {
     return this.http
-      .get<Beer>(this.beer_path)
+      .get<Beer>(environment.apiUrl + environment.beers)
       .pipe(
         retry(2),
+        catchError(this.handleError)
       );
   }
 
   deleteBeer(id) {
     return this.http
-      .delete<Beer>(this.beer_path + '/' + id, this.httpOptions)
+      .delete<Beer>(environment.apiUrl + environment.beers + id, httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -75,7 +63,7 @@ export class ApiService {
     };
     console.log(form);
     return this.http
-      .post<Student>(this.base_path, JSON.stringify(form), this.httpOptions)
+      .post<Student>(environment.apiUrl + environment.students, JSON.stringify(form), httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -91,9 +79,8 @@ export class ApiService {
         address: item.address,
       }
     };
-    console.log(form);
     return this.http
-      .put<Student>(this.base_path + '/' + id, JSON.stringify(form), this.httpOptions)
+      .put<Student>(environment.apiUrl + environment.students + id, JSON.stringify(form), httpOptions)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -102,7 +89,7 @@ export class ApiService {
 
   getStudent(id): Observable<Student> {
     return this.http
-      .get<Student>(this.base_path + '/' + id)
+      .get<Student>(environment.apiUrl + environment.students + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
@@ -124,5 +111,4 @@ export class ApiService {
     return throwError(
       'Something bad happened; please try again later.');
   };
-
 }

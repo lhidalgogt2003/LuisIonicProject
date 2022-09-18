@@ -1,27 +1,29 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { IonStorageService } from '../services/storage.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class RegisterPage implements OnInit {
 
-  loginForm: FormGroup;
-
-  authErrorsMessage;
+  registerForm: FormGroup;
 
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private auth: AuthService,
-    private ionStorage: IonStorageService,
+    private ionStorage: IonStorageService
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
+      first_name: [''],
+      last_name: [''],
+      username: [''],
       email: [''],
       password: [''],
     });
@@ -30,10 +32,10 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  loginUser() {
-    console.log(this.loginForm.value);
-    if (this.loginForm.valid) {
-      this.auth.postLogin(this.loginForm.value)
+  registerUser() {
+    console.log(this.registerForm.value);
+    if (this.registerForm.valid) {
+      this.auth.postRegister(this.registerForm.value)
         .subscribe((response: any) => {
           console.log(response);
           if (response.jwt != null) {
@@ -44,8 +46,7 @@ export class LoginPage implements OnInit {
         });
     }
   }
-  navigateToRegisterPage() {
-    this.router.navigateByUrl('/register');
+  navigateToLoginPage() {
+    this.router.navigateByUrl('/login');
   }
-
 }

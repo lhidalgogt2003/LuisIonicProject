@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, Student } from 'src/app/api.service';
+import { Student } from 'src/app/models/app-models';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-student-create',
@@ -8,16 +9,20 @@ import { ApiService, Student } from 'src/app/api.service';
   styleUrls: ['./student-create.page.scss'],
 })
 export class StudentCreatePage implements OnInit {
-  
+
   data: Student;
-  constructor(private api: ApiService, private router: Router) {
+
+  constructor(
+    private api: ApiService,
+    private router: Router
+  ) {
     this.data = new Student();
-   }
+  }
 
   ngOnInit() {
   }
 
-  backHome(){
+  backHome() {
     console.log('Back to home page');
     this.router.navigateByUrl('/student-list');
   }

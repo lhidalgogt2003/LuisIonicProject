@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="navigateToLoginPage()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registerForm" class="ion-margin">
+
+    <ion-item>
+      <ion-label>First Name</ion-label>
+      <ion-input formControlName="first_name" type="text" placeholder="Your First Name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Last Name</ion-label>
+      <ion-input formControlName="last_name" type="text" placeholder="Your Last Nmae"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>UserName</ion-label>
+      <ion-input formControlName="username" type="text" placeholder="Your User Nmae"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input formControlName="email" type="email" placeholder="Your email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input formControlName="password" type="password" placeholder="Your Password"></ion-input>
+    </ion-item>
+
+  </form>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="registerUser()" expand="block" fill="outline" shape="round">
+      Post Register Form
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
