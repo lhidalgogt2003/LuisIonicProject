@@ -1,23 +1,42 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>
+      Login Page
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <form [formGroup]="loginForm">
+  <form [formGroup]="loginForm" class="ion-margin">
+
     <ion-item>
       <ion-label>Email</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Your email"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label>Password</ion-label>
       <ion-input formControlName="password" type="password" placeholder="Your Password"></ion-input>
     </ion-item>
+
   </form>
 
-  <ion-button (click)="login()" expand="block" fill="clear" shape="round">
-    Login
-  </ion-button>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="navigateToRegisterPage()">
+      <ion-icon name="reader-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="loginUser()" expand="block" fill="solid" shape="round">
+          Login
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

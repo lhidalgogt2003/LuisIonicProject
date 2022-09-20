@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-beer-list',
@@ -11,7 +11,7 @@ export class BeerListPage implements OnInit {
 
   beersList;
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit() {
     this.getAllBeers();
@@ -21,17 +21,17 @@ export class BeerListPage implements OnInit {
 
   getAllBeers() {
     //Get saved list of beers
-    this.api.getBeers().subscribe((response: any) => {
+    this.api.getBeersList().subscribe((response: any) => {
       console.log(response);
       this.beersList = response.data;
     });
   }
 
-  editBeer(){
+  editBeer() {
     console.log('edit pressed');
   }
 
-  addBeer(){
+  addBeer() {
     console.log('add pressed');
   }
 
@@ -45,7 +45,7 @@ export class BeerListPage implements OnInit {
     });
   }
 
-  backHome(){
+  backHome() {
     console.log('Back to home page');
     this.router.navigateByUrl('/home');
   }

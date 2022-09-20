@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-student-list',
@@ -10,14 +10,13 @@ import { ApiService } from 'src/app/api.service';
 export class StudentListPage implements OnInit {
 
   studentsData;
-  
 
-
-  constructor(private api: ApiService, private router: Router) {}
-
+  constructor(
+    private api: ApiService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-
   }
 
   ionViewWillEnter() {
@@ -29,17 +28,17 @@ export class StudentListPage implements OnInit {
 
   getAllStudents() {
     //Get saved list of students
-    this.api.getList().subscribe((response: any) => {
+    this.api.getStudentList().subscribe((response: any) => {
       console.log(response);
       this.studentsData = response.data;
     });
-  }  
+  }
 
-  editStudent(){
+  editStudent() {
     console.log('edit pressed');
   }
 
-  addStudent(){
+  addStudent() {
     console.log('add pressed');
   }
 
@@ -53,7 +52,7 @@ export class StudentListPage implements OnInit {
     });
   }
 
-  backHome(){
+  backHome() {
     console.log('Back to home page');
     this.router.navigateByUrl('/home');
   }

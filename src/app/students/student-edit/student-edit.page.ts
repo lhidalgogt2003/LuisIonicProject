@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Student, ApiService } from 'src/app/api.service';
+import { Student } from 'src/app/models/app-models';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-student-edit',

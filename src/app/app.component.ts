@@ -1,5 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +7,4 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent {
   title = 'mock-server';
-
-  
 }

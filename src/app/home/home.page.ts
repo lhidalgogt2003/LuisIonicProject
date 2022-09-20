@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,22 +9,21 @@ import { Router } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-
-  constructor(private router: Router) {}
-
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) { }
   ngOnInit() {
   }
-
-  beersPage(){
+  beersPage() {
     this.router.navigateByUrl('/beer-list');
-}
-  studentsPage(){
+  }
+  studentsPage() {
     this.router.navigateByUrl('/student-list');
   }
-
-  logout(){
-    this.router.navigateByUrl('/login');
+  logout() {
+    this.router.navigateByUrl('/login').then(()=>{
+      this.authService.logout();
+    });
   }
-
-
 }
